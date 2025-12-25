@@ -2,16 +2,18 @@ import { authClient } from "@/lib/auth-client";
 import { prisma } from "@/lib/prisma";
 
 async function seed() {
+  const email = "superadmin@mail.com";
+  const password = "superadmin";
   const data = await authClient.signUp.email({
-    email: "superadmin@example.com",
-    password: "password",
+    email,
+    password,
     name: "Super Admin",
   });
 
   if (data.data) {
     const superAdmin = await prisma.user.update({
       where: {
-        email: "superadmin@example.com",
+        email,
       },
       data: {
         role: "SUPER_ADMIN",
@@ -21,13 +23,13 @@ async function seed() {
   } else if (data.error.code === "USER_ALREADY_EXISTS_USE_ANOTHER_EMAIL") {
     const superAdmin = await prisma.user.findUnique({
       where: {
-        email: "superadmin@example.com",
+        email,
       },
     });
     if (superAdmin) {
       await prisma.user.update({
         where: {
-          email: "superadmin@example.com",
+          email,
         },
         data: {
           role: "SUPER_ADMIN",

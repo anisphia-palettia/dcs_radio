@@ -1,21 +1,34 @@
 "use client";
 
 import { createUser } from "@/helpers/user.helper";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function CreateUser() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const router = useRouter();
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
   const [isLoading, setIsLoading] = useState(false);
 
-  const isDisabled = !name || !email || !password || isLoading;
+  const isDisabled =
+    !formData.name || !formData.email || !formData.password || isLoading;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    await createUser(name, email, password);
+    const result = await createUser(
+      formData.name,
+      formData.email,
+      formData.password
+    );
     setIsLoading(false);
+
+    if (result) {
+      router.push("/dashboard/users");
+    }
   };
 
   return (
@@ -38,9 +51,11 @@ export default function CreateUser() {
             <input
               className="input input-bordered focus:outline-none focus:ring-2 focus:ring-primary/40"
               placeholder="John Doe"
-              value={name}
+              value={formData.name}
               disabled={isLoading}
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) =>
+                setFormData({ ...formData, name: e.target.value })
+              }
             />
           </div>
 
@@ -53,9 +68,11 @@ export default function CreateUser() {
               type="email"
               className="input input-bordered focus:outline-none focus:ring-2 focus:ring-primary/40"
               placeholder="email@example.com"
-              value={email}
+              value={formData.email}
               disabled={isLoading}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
             />
           </div>
 
@@ -68,9 +85,11 @@ export default function CreateUser() {
               type="password"
               className="input input-bordered focus:outline-none focus:ring-2 focus:ring-primary/40"
               placeholder="••••••••"
-              value={password}
+              value={formData.password}
               disabled={isLoading}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) =>
+                setFormData({ ...formData, password: e.target.value })
+              }
             />
           </div>
 

@@ -8,25 +8,26 @@ export async function createUser(
 ) {
   if (!name || !email || !password) {
     useToastStore.getState().showToast("error", "All fields are required");
-    return;
+    return null;
   }
 
   const { data, error } = await authClient.signUp.email({
     name,
     email,
     password,
-    callbackURL: "/dashboard/users",
   });
-
-  if (data) {
-    useToastStore.getState().showToast("success", "User created successfully");
-    return;
-  }
 
   if (error) {
     useToastStore
       .getState()
       .showToast("error", error.message || "Failed to create user");
-    return;
+    return null;
   }
+
+  if (data) {
+    useToastStore.getState().showToast("success", "User created successfully");
+    return data;
+  }
+
+  return null;
 }

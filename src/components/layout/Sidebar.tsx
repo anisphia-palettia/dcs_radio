@@ -6,13 +6,12 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-export default function DashboardSidebar({
-  children,
-  session,
-}: {
+interface SidebarProps {
   children: React.ReactNode;
   session: { user: { role: string } } | null;
-}) {
+}
+
+export default function DashboardSidebar({ children, session }: SidebarProps) {
   const router = useRouter();
 
   const handleSignOut = async () => {

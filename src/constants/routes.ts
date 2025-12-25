@@ -8,3 +8,10 @@ export const ROUTES = {
     label: "Admin Management",
   },
 } as const;
+
+export const API_ROUTES = {
+  users: {
+    findAll: "/users",
+    deleteById: (id: string) => `/users/${id}`,
+  },
+} as const;

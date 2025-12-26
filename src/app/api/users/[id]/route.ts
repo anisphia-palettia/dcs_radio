@@ -1,7 +1,7 @@
 import { NextRequest } from "next/server";
 import { deleteUserById } from "@/modules/user/user.handler";
-import { requireSuperAdmin } from "@/lib/api/require_super_admin";
-import { errorResponse } from "@/lib/response";
+import { requireSuperAdmin } from "@/modules/auth/auth.guard";
+import { errorResponse } from "@/shared/utils/response";
 
 export async function DELETE(
   req: NextRequest,

@@ -1,43 +1,44 @@
 "use client";
 
-import { createUser } from "@/helpers/user.helper";
+import { ArrowLeftIcon } from "@heroicons/react/24/outline";
+import { ROUTES } from "@/constants/routes";
+import { useUserStore } from "@/stores/user.store";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function CreateUser() {
   const router = useRouter();
+  const { createUser, isCreating } = useUserStore();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
   });
-  const [isLoading, setIsLoading] = useState(false);
 
   const isDisabled =
-    !formData.name || !formData.email || !formData.password || isLoading;
+    !formData.name || !formData.email || !formData.password || isCreating;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
-    const result = await createUser(
-      formData.name,
-      formData.email,
-      formData.password
-    );
-    setIsLoading(false);
-
-    if (result) {
-      router.push("/dashboard/users");
-    }
+    await createUser(formData.name, formData.email, formData.password);
   };
 
   return (
-    <div className="min-h-screen bg-base-200 flex items-center justify-center px-4">
+    <div className="w-full h-full flex items-center justify-center">
       <div className="card w-full max-w-sm bg-base-100 shadow-2xl rounded-2xl">
         <form onSubmit={handleSubmit} className="card-body px-8 py-10 gap-5">
           {/* Header */}
           <div className="text-center space-y-1">
-            <h1 className="text-2xl font-bold tracking-tight">Create User</h1>
+            <div className="flex items-center gap-2 mb-4 justify-center relative">
+              <button
+                type="button"
+                onClick={() => router.push(ROUTES.USERS.path)}
+                className="btn btn-circle absolute left-0"
+              >
+                <ArrowLeftIcon className="size-4" />
+              </button>
+              <h1 className="text-2xl font-bold tracking-tight">Create User</h1>
+            </div>
             <p className="text-sm opacity-70">Tambah pengguna baru</p>
           </div>
 
@@ -52,7 +53,7 @@ export default function CreateUser() {
               className="input input-bordered focus:outline-none focus:ring-2 focus:ring-primary/40"
               placeholder="John Doe"
               value={formData.name}
-              disabled={isLoading}
+              disabled={isCreating}
               onChange={(e) =>
                 setFormData({ ...formData, name: e.target.value })
               }
@@ -69,7 +70,7 @@ export default function CreateUser() {
               className="input input-bordered focus:outline-none focus:ring-2 focus:ring-primary/40"
               placeholder="email@example.com"
               value={formData.email}
-              disabled={isLoading}
+              disabled={isCreating}
               onChange={(e) =>
                 setFormData({ ...formData, email: e.target.value })
               }
@@ -86,7 +87,7 @@ export default function CreateUser() {
               className="input input-bordered focus:outline-none focus:ring-2 focus:ring-primary/40"
               placeholder="••••••••"
               value={formData.password}
-              disabled={isLoading}
+              disabled={isCreating}
               onChange={(e) =>
                 setFormData({ ...formData, password: e.target.value })
               }
@@ -99,7 +100,7 @@ export default function CreateUser() {
             className="btn btn-primary w-full h-11 mt-2"
             disabled={isDisabled}
           >
-            {isLoading ? (
+            {isCreating ? (
               <span className="flex items-center gap-2">
                 <span className="loading loading-spinner loading-sm" />
                 Creating...

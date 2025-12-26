@@ -1,7 +1,7 @@
 "use client";
 
 import { ROUTES } from "@/constants/routes";
-import { authClient } from "@/lib/auth-client";
+import { authClient } from "@/shared/lib/auth-client";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -53,6 +53,12 @@ export default function DashboardSidebar({ children, session }: SidebarProps) {
 
           <li>
             <Link href={ROUTES.DASHBOARD.path}>{ROUTES.DASHBOARD.label}</Link>
+          </li>
+
+          <li>
+            <Link href={ROUTES.CHANGE_PASSWORD.path}>
+              {ROUTES.CHANGE_PASSWORD.label}
+            </Link>
           </li>
 
           {session?.user?.role === "SUPER_ADMIN" && (

@@ -1,5 +1,5 @@
-import { authClient } from "@/lib/auth-client";
-import { prisma } from "@/lib/prisma";
+import { authClient } from "@/shared/lib/auth-client";
+import { prisma } from "@/shared/lib/prisma";
 
 async function seed() {
   const email = "superadmin@mail.com";

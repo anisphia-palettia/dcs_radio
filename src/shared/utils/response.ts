@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { ErrorResponse, SuccessResponse } from "./api/api.types";
+import { ErrorResponse, SuccessResponse } from "@/shared/lib/api/api.types";
 
 export function successResponse<T>(
   data: T,
@@ -22,7 +22,7 @@ export function successResponse<T>(
   );
 }
 
-export function errorResponse<T>(
+export function errorResponse(
   message: string,
   options?: {
     status?: number;

@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server";
-import { requireSuperAdmin } from "@/lib/api/require_super_admin";
+import { requireSuperAdmin } from "@/modules/auth/auth.guard";
 import { getUsers } from "@/modules/user/user.handler";
 
 export async function GET(req: NextRequest) {

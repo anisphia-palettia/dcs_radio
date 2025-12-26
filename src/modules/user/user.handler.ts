@@ -1,4 +1,4 @@
-import { successResponse } from "@/lib/response";
+import { successResponse } from "@/shared/utils/response";
 import { userService } from "./user.service";
 
 export async function getUsers() {

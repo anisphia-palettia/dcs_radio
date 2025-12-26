@@ -4,17 +4,23 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { useUserStore } from "@/stores/user.store";
 import { useToastStore } from "@/stores/toast.store";
+import { useConfirmStore } from "@/stores/confirm.store";
 
 export default function UsersPage() {
   const { users, fetchUsers, deleteUser, deletingId } = useUserStore();
   const { showToast } = useToastStore();
+  const { showConfirm } = useConfirmStore();
 
   useEffect(() => {
     fetchUsers();
   }, [fetchUsers]);
 
   const handleDelete = async (id: string) => {
-    if (!confirm("Are you sure you want to delete this user?")) return;
+    const confirmed = await showConfirm(
+      "Delete User",
+      "Are you sure you want to delete this user?"
+    );
+    if (!confirmed) return;
 
     const success = await deleteUser(id);
     if (success) {
@@ -60,13 +66,6 @@ export default function UsersPage() {
                     </span>
                   </td>
                   <td className="flex gap-2">
-                    <Link
-                      href={`/dashboard/users/${user.id}/edit`}
-                      className="btn btn-sm btn-outline"
-                    >
-                      Edit
-                    </Link>
-
                     <button
                       className="btn btn-sm btn-outline"
                       onClick={() => handleDelete(user.id)}

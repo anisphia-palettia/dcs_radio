@@ -1,5 +1,5 @@
 import DashboardSidebar from "@/components/layout/Sidebar";
-import { auth } from "@/lib/auth";
+import { auth } from "@/shared/lib/auth";
 import { headers } from "next/headers";
 
 export const metadata = {

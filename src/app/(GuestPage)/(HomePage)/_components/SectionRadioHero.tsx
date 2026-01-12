@@ -7,9 +7,9 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Radio } from "lucide-react";
 import Image from "next/image";
-import { RadioHeroPlayButtonToggle } from "./ui/radio-hero-play-button-toggle";
+import { RadioHeroPlayButtonToggle } from "./ui/RadioHeroPlayButtonToggle";
 
-export function RadioHero() {
+export function SectionRadioHero() {
   return (
     <section className="p-4 md:p-8">
       <Card>

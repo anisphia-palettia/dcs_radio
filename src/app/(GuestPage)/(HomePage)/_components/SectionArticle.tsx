@@ -2,7 +2,7 @@ import { ArticleCard } from "@/components/ArticleCard";
 import { TypographyH2 } from "@/components/typography";
 import Link from "next/link";
 
-export function ArticleSection() {
+export function SectionArticle() {
   return (
     <section className="space-y-8">
       <div className="flex items-center justify-between">

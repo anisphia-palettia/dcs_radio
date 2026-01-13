@@ -1,6 +1,5 @@
 import {LOREM_IPSUM} from "@/constants/variabel";
-import Link from "next/link";
-import {BackNavigationRoute} from "@/app/(GuestPage)/_components/BackNavigationRoute";
+import {BackNavigationRoute} from "@/app/(Public)/_components/BackNavigationRoute";
 
 
 export default async function Page({params}: { params: Promise<{ slug: string }> }) {

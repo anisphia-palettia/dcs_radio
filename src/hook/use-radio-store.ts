@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { RADIO_URL } from "../constants/variabel";
+import {RADIO_URL} from "@/constants/variabel";
 
 interface RadioState {
   isPlaying: boolean;

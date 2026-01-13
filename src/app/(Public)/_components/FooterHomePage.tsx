@@ -2,7 +2,7 @@ import {Mail, MapPin, Phone, Instagram, Youtube} from "lucide-react";
 
 export function FooterHomePage() {
     return (
-        <footer className="relative overflow-hidden bg-background border-t mt-8">
+        <footer className="relative overflow-hidden bg-accent border-t mt-8">
 
             <div className="container mx-auto px-6 py-14">
                 <div className="grid gap-10 md:grid-cols-4">

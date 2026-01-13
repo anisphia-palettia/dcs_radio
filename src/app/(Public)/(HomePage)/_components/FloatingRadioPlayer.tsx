@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { useRadioStore } from "@/store/radio-store";
+import { useRadioStore } from "@/hook/use-radio-store";
 import { Pause, Play, Radio } from "lucide-react";
 
 export function FloatingRadioPlayer() {

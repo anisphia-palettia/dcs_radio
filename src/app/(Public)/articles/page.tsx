@@ -1,4 +1,4 @@
-import {SectionArticles} from "@/app/(GuestPage)/articles/_components/SectionArticles";
+import {SectionArticles} from "@/app/(Public)/articles/_components/SectionArticles";
 
 export default function Articles() {
     return (

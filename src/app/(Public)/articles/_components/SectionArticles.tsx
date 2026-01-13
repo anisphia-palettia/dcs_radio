@@ -1,6 +1,6 @@
 import {TypographyH1, TypographyLead} from "@/components/typography";
 import {ArticleCard} from "@/components/ArticleCard";
-import {BackNavigationRoute} from "@/app/(GuestPage)/_components/BackNavigationRoute";
+import {BackNavigationRoute} from "@/app/(Public)/_components/BackNavigationRoute";
 
 export  function  SectionArticles() {
     return (
@@ -15,7 +15,7 @@ export  function  SectionArticles() {
 
             <div className="border"></div>
 
-            <div className="space-y-4">
+            <div className="flex flex-col gap-4">
                 <ArticleCard/>
                 <ArticleCard/>
             </div>

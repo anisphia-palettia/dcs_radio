@@ -1,5 +1,5 @@
-import {SectionRadioHero} from "@/app/(GuestPage)/(HomePage)/_components/SectionRadioHero";
-import {SectionArticle} from "@/app/(GuestPage)/(HomePage)/_components/SectionArticle";
+import {SectionRadioHero} from "@/app/(Public)/(HomePage)/_components/SectionRadioHero";
+import {SectionArticle} from "@/app/(Public)/(HomePage)/_components/SectionArticle";
 
 export default function Home() {
   return (

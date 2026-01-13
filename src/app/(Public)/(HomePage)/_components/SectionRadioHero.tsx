@@ -12,7 +12,7 @@ import { RadioHeroPlayButtonToggle } from "./ui/RadioHeroPlayButtonToggle";
 export function SectionRadioHero() {
   return (
     <section className="p-4 md:p-8">
-      <Card>
+      <Card className={"bg-accent"}>
         <CardContent className="p-8 md:p-12">
           <div className="grid md:grid-cols-2 items-center gap-6">
             {/* Left */}

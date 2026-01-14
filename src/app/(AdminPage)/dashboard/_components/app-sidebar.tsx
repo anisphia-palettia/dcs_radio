@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { ChevronUp, User2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useAuthStore } from "@/hook/use-auth.store";
+import { useAuthStore } from "@/hooks/use-auth.store";
 import { toast } from "sonner";
 import { DASHBOARD_ROUTES } from "@/constants/dashboard-routes";
 import Link from "next/link";

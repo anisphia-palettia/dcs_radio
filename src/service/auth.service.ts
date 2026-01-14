@@ -6,7 +6,7 @@ export const authService = {
     },
 
     session() {
-        return authClient.getSession()
+        return authClient.getSession();
     },
 
     logout() {

@@ -1,12 +1,15 @@
 import {NextRequest, NextResponse} from "next/server";
-import {authService} from "@/service/auth.service";
+import {auth} from "./lib/auth";
+
 
 export async function proxy(request: NextRequest) {
     const {pathname} = request.nextUrl
 
-    const data = await authService.session()
+    const session  = await auth.api.getSession({
+        headers : request.headers,
+    })
 
-    const isLoggedIn = !!data
+    const isLoggedIn = !!session
     const isDashboard = pathname.startsWith("/dashboard")
     const isLoginPage = pathname === "/login"
 

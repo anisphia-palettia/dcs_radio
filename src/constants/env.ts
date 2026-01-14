@@ -1,3 +1,9 @@
+import process from "node:process";
+
 export const ENV = {
-    API_URL : process.env.NEXT_PUBLIC_API_URL!
+    DATABASE_URL: process.env.DATABASE_URL,
+
+    ADMIN_EMAIL: process.env.ADMIN_EMAIL,
+    ADMIN_PASSWORD: process.env.ADMIN_PASSWORD,
+    ADMIN_NAME: process.env.ADMIN_NAME,
 }

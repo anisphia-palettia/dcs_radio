@@ -1,6 +1,6 @@
 import {create} from "zustand";
-import {authService} from "@/service/auth.service";
 import {Session} from "@/lib/auth-client";
+import {authService} from "@/service/auth.service";
 
 interface AuthState {
     user: Session | null;
@@ -10,6 +10,7 @@ interface AuthState {
     login: (email: string, password: string) => Promise<void>
     logout: () => Promise<void>
     fetchSession: () => Promise<void>
+    initSession: () => Promise<void>
 }
 
 export const useAuthStore = create<AuthState>((set) => ({
@@ -20,35 +21,41 @@ export const useAuthStore = create<AuthState>((set) => ({
     login: async (email, password) => {
         set({loading: true, error: null});
 
-        try {
-            await authService.login({email, password});
-            const user = await authService.session();
-            set({user : user.data, loading: false});
-        } catch (err: unknown) {
-            let message = "Login gagal";
-
-            if (err instanceof Error) {
-                message = err.message;
-            }
-
-            set({
-                error: message,
-                loading: false,
-            });
+        const {error: loginError} = await authService.login({email, password});
+        if (loginError) {
+            set({loading: false, error: loginError.message});
         }
+        const user = await authService.session();
+
+        set({user: user.data, loading: false});
     },
 
     logout: async () => {
         await authService.logout();
-        set({user: null});
+
+        set({
+            user: null,
+            loading: false,
+            error: null,
+        });
     },
 
     fetchSession: async () => {
         try {
-            const user = await authService.session();
-            set({user : user.data});
+            const {data: user} = await authService.session();
+            set({user: user});
         } catch {
             set({user: null});
         }
     },
+
+    initSession: async () => {
+        const {data: session, error : sessionError} = await authService.session();
+
+        set({
+            user: session ?? null,
+            loading: false,
+            error: sessionError?.message ?? null,
+        });
+    }
 }))

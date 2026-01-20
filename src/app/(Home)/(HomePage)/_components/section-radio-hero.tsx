@@ -23,7 +23,7 @@ export function SectionRadioHero() {
               </Badge>
               <TypographyH1>Radio DCS</TypographyH1>
               <TypographyLead>
-                Sahabat Setia Anda - DCS 1005.50 FM
+                Sahabat Setia Anda - DCS 100.50 FM
               </TypographyLead>
               <TypographyP>
                 Radio dakwah yang senantiasa menyajikan kajian Islam, nasihat

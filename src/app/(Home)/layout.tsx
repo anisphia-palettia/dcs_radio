@@ -1,5 +1,5 @@
-import {FloatingRadioPlayer} from "@/app/(Public)/(HomePage)/_components/FloatingRadioPlayer";
-import {FooterHomePage} from "@/app/(Public)/_components/FooterHomePage";
+import { FloatingRadioPlayer } from "@/app/(Home)/(HomePage)/_components/floating-radio-player";
+import { FooterHomePage } from "@/app/(Home)/_components/footer-home-page";
 
 export default function HomePageLayout({
   children,

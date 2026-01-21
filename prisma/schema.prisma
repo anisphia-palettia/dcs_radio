@@ -22,8 +22,41 @@ model User {
   sessions      Session[]
   accounts      Account[]
 
+  articles Article[]
+
   @@unique([email])
   @@map("user")
+}
+
+model Article {
+  id          String    @id @default(cuid())
+  title       String
+  slug        String    @unique
+  content     String
+  image       String?
+  category    Category? @relation(fields: [categoryId], references: [id])
+  categoryId  String?
+  isPublished Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  authorId    String
+  author      User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  @@index([authorId])
+  @@index([categoryId])
+  @@map("article")
+}
+
+model Category {
+  id          String    @id @default(cuid())
+  name        String
+  slug        String    @unique
+  description String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  articles    Article[]
+
+  @@map("category")
 }
 
 model Session {
